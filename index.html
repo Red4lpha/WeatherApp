@@ -5,10 +5,80 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="script.js" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Weather App</title>
 </head>
 <body>
-    
+    <section class="search-container">
+        <div class="search-area">
+            <input type="text" id="search-input">
+            <button id="search-button">search</button>
+        </div>
+        <div class="search-results">
+            <h1 id="weather-results"></h1>
+        </div>
+        <div class="wave-contain">
+            <div class="weather-text">
+                <div class="first-line">
+                    <div class="left-side">
+                        <p class="med-text"><span id="city">Tijuana,</span><span id="country">MX</span></p>
+                        <p class="small-text" id="weather-type">Mostly Cloudly</p>
+                    </div>
+                    <div class="right-side">
+                        <p class="small-text"><span id="day">Tuesday</span>, <span id="date">Nov 3rd</span> - <span id="time">6:32 PM</span></p>
+                    </div>
+                </div>
+                <div class="second-line">
+                    <img src="http://openweathermap.org/img/wn/10d@2x.png" class="weather-img" id="weather-img"><p id="temperature" class="larger-text">63</p><p id="degree" class="large-text">&degF</p>
+                    <svg>
+                    </svg>
+                </div>
+            </div>
+            <div id="wave">
+                <svg viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet">
+                    <path d="M0,100 C150,200 350,0 500,100 L500,00 L0,0 Z" style="stroke: none; fill:white;">
+                    </path>
+                </svg>
+            </div>
+            <div class="weather-forecast">
+                <div id="day1" class="forecast-card">
+                    <p id="forecast-date1">sun</p>
+                    <img id="forecast-img1" src="./media/sun.svg" alt="">
+                    <p id="forecast-temp1">64&degF</p>
+                </div>
+                <div id="day2" class="forecast-card">
+                    <p id="forecast-date2">sun</p>
+                    <img id="forecast-img2" src="./media/sun.svg" alt="">
+                    <p id="forecast-temp2">64&degF</p>
+                </div>
+                <div id="day3" class="forecast-card">
+                    <p id="forecast-date3">sun</p>
+                    <img id="forecast-img3" src="./media/sun.svg" alt="">
+                    <p id="forecast-temp3">64&degF</p>
+                </div>
+                <div id="day4" class="forecast-card">
+                    <p id="forecast-date4">sun</p>
+                    <img id="forecast-img4" src="./media/sun.svg" alt="">
+                    <p id="forecast-temp4">64&degF</p>
+                </div>
+                <div id="day5" class="forecast-card">
+                    <p id="forecast-date5">sun</p>
+                    <img id="forecast-img5" src="./media/sun.svg" alt="">
+                    <p id="forecast-temp5">64&degF</p>
+                </div>
+                <div id="day6" class="forecast-card">
+                    <p id="forecast-date6">sun</p>
+                    <img id="forecast-img6" src="./media/sun.svg" alt="">
+                    <p id="forecast-temp6">64&degF</p>
+                </div>
+                <div id="day7" class="forecast-card">
+                    <p id="forecast-date7">sun</p>
+                    <img id="forecast-img7" src="./media/sun.svg" alt="">
+                    <p id="forecast-temp7">64&degF</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

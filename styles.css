@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Zen+Antique&family=Zen+Antique+Soft&display=swap');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3E3933;
+}
+
+.search-container {
+    margin-top: 40px;
+    padding: 10px;
+    background-color: aquamarine;
+    border-radius: 5px;
+    width: 700px;
+    height: 700px;
+}
+.search-area {
+    padding: 10px;
+    border-bottom: 2px solid black;
+}
+
+#wave {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 70%;
+    vertical-align: middle;
+    overflow: hidden;
+    transform: rotate(180deg);
+
+}
+#wave svg {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#svg-inverse {
+    transform: scaleX(-1);
+    transform: translateX(0);
+}
+.wave-contain {
+    background-image: url(./media/pexels-skitterphoto-3768.jpg);
+    background-position: center;
+    position: relative;
+}
+
+.weather-text {
+    padding: 40px;
+    color: white;
+    stroke: black;
+    text-shadow: 2px 2px slategrey;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.first-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.first-line p {
+    padding-bottom: 10px;
+}
+#weather-type {
+    text-transform: capitalize;
+}
+.second-line {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.weather-img {
+    width: 50px;
+    background-color: transparent;
+}
+.med-text {
+    font-size: 25px;
+    font-family: 'Zen Antique', serif;
+}
+.small-text {
+    font-size: 17px;
+    font-family: 'Zen Antique Soft', serif;
+}
+.large-text {
+    font-size: 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+.larger-text {
+    font-size: 130px;
+    line-height: .8;
+    font-family: 'Montserrat', sans-serif;
+}
+.weather-forecast {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 30px 40px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    width: 100%;
+    font-family: 'Zen Antique Soft', serif;
+    color: slategray;
+    font-size: 20px;
+}
+.forecast-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.forecast-card p:last-child {
+    font-size: 15px;
+    color: lightslategray;
+}.forecast-card img {
+    width: 50px;
+}
