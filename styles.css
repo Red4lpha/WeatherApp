@@ -7,24 +7,155 @@
 
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #3E3933;
 }
+input:focus, input:active, input {
+    border-color: 2px solid white;
+    outline: none;
+}
+
+header {
+    width: 100%;
+    background-color: rgba(255,255,255,.05);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+.search-area {
+    padding: 15px;
+    margin: 0 auto;
+    display: inline-block;
+}
+.search-area input{
+    border: 0;
+    border-bottom: 2px solid grey;
+    outline: 0;
+    font-size: 1.3rem;
+    color: white;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+.search-area button {
+    border: 2px solid grey;
+    background: transparent;
+    padding: 7px;
+    font-size: 1rem;
+    color: white;
+    margin-left: 7px;
+}
+
+ /* The switch - the box around the slider */
+.switch-area{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.switch-area span{
+font-size: 1.3rem;
+color: white;
+padding-right: 10px;
+text-align: center;
+}
+
+.switch {
+position: relative;
+display: inline-block;
+width: 60px;
+height: 34px;
+
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+
+/* -------------The slider-------------- */
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: grey;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 26px;
+width: 26px;
+left: 4px;
+bottom: 4px;
+background-color: white;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+input:checked + .slider {
+background-color: #2196F3;
+}
+
+input:focus + .slider {
+box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(26px);
+-ms-transform: translateX(26px);
+transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+border-radius: 34px;
+}
+
+.slider.round:before {
+border-radius: 50%;
+} 
+
+
+
+
+
+
+
+
+
+
+/* ------------Weather Container-------------- */
 
 .search-container {
     margin-top: 40px;
     padding: 10px;
-    background-color: aquamarine;
+    background-color: rgba(255,255,255,.6);
     border-radius: 5px;
-    width: 700px;
-    height: 700px;
+    max-width: 700px;
+    /* height: 550px; */
 }
-.search-area {
-    padding: 10px;
-    border-bottom: 2px solid black;
+.bg-container {
+    background-image: url(./media/Cloud-night.jpeg);
+    background-position:center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    position: relative;
 }
 
+
+
+/* ----------------OLD WAVE Container -------------- */
 #wave {
     display: inline-block;
     position: relative;
@@ -33,7 +164,6 @@ body {
     vertical-align: middle;
     overflow: hidden;
     transform: rotate(180deg);
-
 }
 #wave svg {
     display: inline-block;
@@ -41,22 +171,59 @@ body {
     top: 0;
     left: 0;
 }
+#wave path{
+    fill-opacity: 60%;
+    /* transform: rotate(180deg); */
+}
 #svg-inverse {
     transform: scaleX(-1);
     transform: translateX(0);
 }
-.wave-contain {
-    background-image: url(./media/pexels-skitterphoto-3768.jpg);
-    background-position: center;
+
+
+/* ------------New Wave Container------------------ */
+
+.wave-container{
     position: relative;
 }
+.wave-container path{
+    /* fill-opacity: 60%; */
+}
+
+#white-wave {
+    width: 100%;
+    height: 120px;
+    z-index: 1;
+    position: relative;
+}
+#blue-wave {
+    width: 100%;
+    height: 120px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .weather-text {
     padding: 40px;
     color: white;
     stroke: black;
     text-shadow: 2px 2px slategrey;
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     left: 0;
     width: 100%;
@@ -78,7 +245,7 @@ body {
     align-items: flex-start;
 }
 .weather-img {
-    width: 50px;
+    width: 80px;
     background-color: transparent;
 }
 .med-text {
@@ -98,9 +265,30 @@ body {
     line-height: .8;
     font-family: 'Montserrat', sans-serif;
 }
+
+
+/* -------------Forecast Area --------------- */
+.empty-endblock {
+    margin-top: -5px;
+    width: 100%;
+    height: 100px;
+    position: relative;
+    background-color: #0088ff;
+}
+.empty-endblock2 {
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+}
+
+
+
 .weather-forecast {
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     left: 0;
     padding: 30px 40px 0;
     display: flex;
@@ -108,20 +296,33 @@ body {
     justify-content:space-around;
     align-items: center;
     width: 100%;
-    font-family: 'Zen Antique Soft', serif;
-    color: slategray;
-    font-size: 20px;
+    font-family: 'Zen Antique', serif;
+    /* color: slategray; */
+    color: grey;
+    font-size: 17px;
+    text-transform: uppercase;
+    /* text-shadow: 1px 0px darkblue; */
+    /* text-shadow: 1px 1px slategrey; */
+    z-index: 2;
+    flex-wrap: wrap;
 }
+
 .forecast-card {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 10px;
 }
-
-
+.forecast-card:first-child p:first-child {
+    font-weight: bolder;
+    color: black;
+}
 .forecast-card p:last-child {
     font-size: 15px;
-    color: lightslategray;
-}.forecast-card img {
+    color: slateblue;
+}
+.forecast-card img {
     width: 50px;
 }
+
+
