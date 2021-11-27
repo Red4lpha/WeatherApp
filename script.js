@@ -1,10 +1,6 @@
 const apikey = '7a36fc07f959804b2a9a8d55494ac3dc';
 let searchQuery = 'Tijuana'
 const api = `http://api.openweathermap.org/data/2.5/weather?q=`;
-//https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid={API key}
-//lon: -117.0167, lat: 32.5333 } - tijuana
-
-
 const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const BGIMAGES = [
@@ -79,8 +75,9 @@ const degrees = document.querySelectorAll('.degree-text');
 const degreeSwitcher = document.querySelector('#degree-switch');
 const largeDegree = document.querySelector('#degree');
 const bgImage = document.querySelector('.bg-container');
+const errorContainer = document.querySelector('#error-container');
 
-//This is to key track if using Fahrenheit or Celsius 
+//This is to keep track if using Fahrenheit or Celsius 
 let isFDegrees = true;
 let degreeText = '&degF';
 
@@ -88,8 +85,9 @@ degreeSwitcher.addEventListener('change', () => {
     isFDegrees = !isFDegrees;
     if (isFDegrees){degreeText = '&degF' } 
     else { degreeText = '&degC'}
+    //Grabs just the number and possible negative sign from the temperature text
     let largeNum = parseInt(temperature.innerText.match(/-?\d+/g).join(''), 10);
-    console.log('largeNum', largeNum);
+    //console.log('largeNum', largeNum);
     let newLargeNum = convertFromTemp(largeNum);
     temperature.innerText = newLargeNum;
     largeDegree.innerHTML = degreeText;
@@ -104,7 +102,13 @@ btn.addEventListener('click', () => {
     searchQuery = input.value;
     let query = `${api}${searchQuery}&APPID=${apikey}`;
     //console.log(query);
-    getResults(query);
+    getResults(query).catch( async(err) => {
+        //console.log('get request failed');
+        //console.log(err);
+        errorContainer.className = 'error';
+        await new Promise(r => setTimeout(r, 2000));
+        errorContainer.className = 'error hidden';
+    });
 });
 
 async function getResults(query){
@@ -135,8 +139,7 @@ async function getResults(query){
     weatherImg.src =`http://openweathermap.org/img/wn/${icon}@2x.png`;
     //This uses the icon data from the API to look up what BG image to use
     let obj = BGIMAGES.find(o => o.icon.find( o2 => o2 == icon));
-    console.log(obj);
-    //If the icon data doesnt match any from my array list
+    //If the icon data doesnt match any from my array list then just use default day cloudy bg
     if (obj === undefined) {
         bgImage.setAttribute ('style', 
         `background-image: url(./media/Cloud-day.jpg);`); 
@@ -157,10 +160,7 @@ async function getResults(query){
         card.children[2].innerHTML = convertFromK(forecastData.getTemp(index))+ degreeText;
     });
 }
-getResults().catch((err) => {
-    console.log('get request failed');
-    console.log(err);
-});
+
 
 
 class Time {
@@ -214,7 +214,3 @@ function convertFromTemp(previousTemp){
     if (isFDegrees){ return Math.floor((previousTemp * (9/5)) + 32)}
     else { return Math.floor((previousTemp - 32) * (5/9))}
 }
-
-
-//let forecastAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apikey}`
-//getResults(test);

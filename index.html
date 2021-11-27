@@ -22,6 +22,9 @@
             </label>
         </div>
     </header>
+    <section class="error hidden" id="error-container">
+        <p>Error: Invalid Search Query</p>
+    </section>
     <section class="search-container">
         <div class="search-results">
             <h1 id="weather-results"></h1>
@@ -39,8 +42,6 @@
                 </div>
                 <div class="second-line">
                     <img src="http://openweathermap.org/img/wn/10d@2x.png" class="weather-img" id="weather-img"><p id="temperature" class="larger-text degree-num">63<p id="degree" class="large-text">&degF</p></p>
-                    <svg>
-                    </svg>
                 </div>
             </div>
             <div class="wave-container" >
@@ -53,44 +54,43 @@
                     </svg>
                 </div>
             </div>
-            <div class="empty-endblock">
-                <div class="empty-endblock2"></div>
-            </div>
-            <div class="weather-forecast">
-                <div id="day1" class="forecast-card">
-                    <p id="forecast-date1">sun</p>
-                    <img id="forecast-img1" src="./media/sun.svg" alt="">
-                    <p id="forecast-temp1" class="degree-text">64&degF</p>
-                </div>
-                <div id="day2" class="forecast-card">
-                    <p id="forecast-date2">sun</p>
-                    <img id="forecast-img2" src="./media/sun.svg" alt="">
-                    <p id="forecast-temp2" class="degree-text">64&degF</p>
-                </div>
-                <div id="day3" class="forecast-card">
-                    <p id="forecast-date3">sun</p>
-                    <img id="forecast-img3" src="./media/sun.svg" alt="">
-                    <p id="forecast-temp3" class="degree-text">64&degF</p>
-                </div>
-                <div id="day4" class="forecast-card">
-                    <p id="forecast-date4">sun</p>
-                    <img id="forecast-img4" src="./media/sun.svg" alt="">
-                    <p id="forecast-temp4" class="degree-text">64&degF</p>
-                </div>
-                <div id="day5" class="forecast-card">
-                    <p id="forecast-date5">sun</p>
-                    <img id="forecast-img5" src="./media/sun.svg" alt="">
-                    <p id="forecast-temp5" class="degree-text">64&degF</p>
-                </div>
-                <div id="day6" class="forecast-card">
-                    <p id="forecast-date6">sun</p>
-                    <img id="forecast-img6" src="./media/sun.svg" alt="">
-                    <p id="forecast-temp6" class="degree-text">64&degF</p>
-                </div>
-                <div id="day7" class="forecast-card">
-                    <p id="forecast-date7">sun</p>
-                    <img id="forecast-img7" src="./media/sun.svg" alt="">
-                    <p id="forecast-temp7" class="degree-text">64&degF</p>
+            <div class="weather-forecast-container">
+                <div class="weather-forecast">
+                    <div id="day1" class="forecast-card">
+                        <p id="forecast-date1">sun</p>
+                        <img id="forecast-img1" src="./media/sun.svg" alt="">
+                        <p id="forecast-temp1" class="degree-text">64&degF</p>
+                    </div>
+                    <div id="day2" class="forecast-card">
+                        <p id="forecast-date2">sun</p>
+                        <img id="forecast-img2" src="./media/sun.svg" alt="">
+                        <p id="forecast-temp2" class="degree-text">64&degF</p>
+                    </div>
+                    <div id="day3" class="forecast-card">
+                        <p id="forecast-date3">sun</p>
+                        <img id="forecast-img3" src="./media/sun.svg" alt="">
+                        <p id="forecast-temp3" class="degree-text">64&degF</p>
+                    </div>
+                    <div id="day4" class="forecast-card">
+                        <p id="forecast-date4">sun</p>
+                        <img id="forecast-img4" src="./media/sun.svg" alt="">
+                        <p id="forecast-temp4" class="degree-text">64&degF</p>
+                    </div>
+                    <div id="day5" class="forecast-card">
+                        <p id="forecast-date5">sun</p>
+                        <img id="forecast-img5" src="./media/sun.svg" alt="">
+                        <p id="forecast-temp5" class="degree-text">64&degF</p>
+                    </div>
+                    <div id="day6" class="forecast-card">
+                        <p id="forecast-date6">sun</p>
+                        <img id="forecast-img6" src="./media/sun.svg" alt="">
+                        <p id="forecast-temp6" class="degree-text">64&degF</p>
+                    </div>
+                    <div id="day7" class="forecast-card">
+                        <p id="forecast-date7">sun</p>
+                        <img id="forecast-img7" src="./media/sun.svg" alt="">
+                        <p id="forecast-temp7" class="degree-text">64&degF</p>
+                    </div>
                 </div>
             </div>
         </div>
