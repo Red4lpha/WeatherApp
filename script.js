@@ -120,7 +120,7 @@ async function getResults(query){
     let lon = data.coord.lon;
     let forecastAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&appid=${apikey}`;
     const forecastResult = await axios.get(forecastAPI);
-    //console.log(forecastResult.data);
+    console.log(forecastResult.data);
 
     //Main text info
     let temp = '';
@@ -157,7 +157,8 @@ async function getResults(query){
         card.children[0].innerText = DAYS[dayNum].substr(0,3);
         let FCIcon = forecastData.getIcon(index);
         card.children[1].src = `http://openweathermap.org/img/wn/${FCIcon}@2x.png`
-        card.children[2].innerHTML = convertFromK(forecastData.getTemp(index))+ degreeText;
+        card.children[2].innerHTML = convertFromK(forecastData.getHigh(index))+ degreeText;
+        card.children[3].innerHTML = convertFromK(forecastData.getLow(index))+ degreeText;
     });
 }
 
@@ -200,8 +201,11 @@ class Forecast {
     getIcon(index){
         return this.result.data.daily[index].weather[0].icon;
     };
-    getTemp(index){
+    getHigh(index){
         return this.result.data.daily[index].temp.day;
+    }
+    getLow(index){
+        return this.result.data.daily[index].temp.eve;
     }
 };
 

@@ -154,10 +154,21 @@ border-radius: 50%;
 .search-container {
     margin-top: 40px;
     padding: 10px;
-    background-color: rgba(255,255,255,.6);
+    /* background-color: rgba(255,255,255,.6); */
     border-radius: 5px;
     max-width: 700px;
     /* height: 550px; */
+/*     -webkit-box-shadow: 12px 12px 11px -4px rgba(114,114,114,0.8); 
+    box-shadow: 12px 12px 11px -4px rgba(114,114,114,0.8); */
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 12px 12px 11px -4px rgba(114,114,114,0); 
+box-shadow: 0px 10px 13px -7px #000000, 12px 12px 11px -4px rgba(114,114,114,0);
+
+   /* background-image: linear-gradient(-225deg, #473B7B90 0%, #3584A790 51%, #30D2BE90 100%); */
+/*    background: linear-gradient(to bottom, #D5DEE795 0%, #E8EBF295 50%, #E2E7ED95 100%), linear-gradient(to bottom, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.02) 61%, rgba(0,0,0,0.02) 73%), linear-gradient(33deg, rgba(255,255,255,0.20) 0%, rgba(0,0,0,0.20) 100%);
+ background-blend-mode: normal,color-burn; */
+ /* background-image: linear-gradient(to top, #e6e9f080 0%, #eef1f580 100%); */
+ background-image: linear-gradient(-225deg, #7a9ea7 0%, #B9B6E5 100%);
+ 
 }
 .bg-container {
     background-image: url(./media/Cloud-night.jpeg);
@@ -310,7 +321,11 @@ border-radius: 50%;
     font-weight: bolder;
     color: black;
 }
-.forecast-card p:last-child {
+.forecast-card .degree-high {
+    font-size: 17px;
+    color:tomato;
+}
+.forecast-card .degree-low {
     font-size: 15px;
     color: slateblue;
 }
