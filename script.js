@@ -1,7 +1,7 @@
 const apikey = '7a36fc07f959804b2a9a8d55494ac3dc';
 let searchQuery = 'Tijuana'
 const api = `http://api.openweathermap.org/data/2.5/weather?q=`;
-const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const BGIMAGES = [
     {
@@ -83,8 +83,8 @@ let degreeText = '&degF';
 
 degreeSwitcher.addEventListener('change', () => {
     isFDegrees = !isFDegrees;
-    if (isFDegrees){degreeText = '&degF' } 
-    else { degreeText = '&degC'}
+    if (isFDegrees) { degreeText = '&degF' }
+    else { degreeText = '&degC' }
     //Grabs just the number and possible negative sign from the temperature text
     let largeNum = parseInt(temperature.innerText.match(/-?\d+/g).join(''), 10);
     //console.log('largeNum', largeNum);
@@ -94,7 +94,7 @@ degreeSwitcher.addEventListener('change', () => {
     degrees.forEach((degree) => {
         let oldTemp = parseInt(degree.innerText.match(/-?\d+/g).join(''), 10);
         let newTemp = convertFromTemp(oldTemp);
-        degree.innerHTML = `${newTemp}${degreeText}`;
+        degree.innerHTML = `${newTemp}&deg`;
     });
 });
 
@@ -102,7 +102,7 @@ btn.addEventListener('click', () => {
     searchQuery = input.value;
     let query = `${api}${searchQuery}&APPID=${apikey}`;
     //console.log(query);
-    getResults(query).catch( async(err) => {
+    getResults(query).catch(async (err) => {
         //console.log('get request failed');
         //console.log(err);
         errorContainer.className = 'error';
@@ -111,7 +111,7 @@ btn.addEventListener('click', () => {
     });
 });
 
-async function getResults(query){
+async function getResults(query) {
     const result = await axios.get(query);
     //console.log(result.data);
     let data = result.data;
@@ -120,7 +120,7 @@ async function getResults(query){
     let lon = data.coord.lon;
     let forecastAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&appid=${apikey}`;
     const forecastResult = await axios.get(forecastAPI);
-    console.log(forecastResult.data);
+    /* console.log(forecastResult.data); */
 
     //Main text info
     let temp = '';
@@ -136,85 +136,83 @@ async function getResults(query){
     temperature.innerText = temp;
     weatherType.innerText = data.weather[0].description;
     let icon = data.weather[0].icon;
-    weatherImg.src =`http://openweathermap.org/img/wn/${icon}@2x.png`;
+    weatherImg.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
     //This uses the icon data from the API to look up what BG image to use
-    let obj = BGIMAGES.find(o => o.icon.find( o2 => o2 == icon));
+    let obj = BGIMAGES.find(o => o.icon.find(o2 => o2 == icon));
     //If the icon data doesnt match any from my array list then just use default day cloudy bg
     if (obj === undefined) {
-        bgImage.setAttribute ('style', 
-        `background-image: url(./media/Cloud-day.jpg);`); 
+        bgImage.setAttribute('style',
+            `background-image: url(./media/Cloud-day.jpg);`);
     }
     else {
-        bgImage.setAttribute ('style', 
-        `background-image: url(${obj.image});`);
+        bgImage.setAttribute('style',
+            `background-image: url(${obj.image});`);
     }
-    
+
     //forecast info
     let forecastData = new Forecast(forecastResult);
     forecastCards.forEach((card, index) => {
         /* console.log(card); */
         let dayNum = (localTime.getLocalDayNum() + index) % DAYS.length;
-        card.children[0].innerText = DAYS[dayNum].substr(0,3);
+        card.children[0].innerText = DAYS[dayNum].substr(0, 3);
         let FCIcon = forecastData.getIcon(index);
         card.children[1].src = `http://openweathermap.org/img/wn/${FCIcon}@2x.png`
-        card.children[2].innerHTML = convertFromK(forecastData.getHigh(index))+ degreeText;
-        card.children[3].innerHTML = convertFromK(forecastData.getLow(index))+ degreeText;
+        card.children[2].children[0].innerHTML = convertFromK(forecastData.getHigh(index)) + '&deg';
+        card.children[2].children[1].innerHTML = convertFromK(forecastData.getLow(index)) + '&deg';
     });
 }
 
-
-
 class Time {
-    constructor(dateTime, timeZoneOffSet){
+    constructor(dateTime, timeZoneOffSet) {
         this.dateTime = dateTime;
         this.timeZoneOffSet = timeZoneOffSet;
-        this.localTime = new Date((dateTime + timeZoneOffSet) * 1000); 
+        this.localTime = new Date((dateTime + timeZoneOffSet) * 1000);
     };
-    getLocalTime(){
+    getLocalTime() {
         //It's necessary to use UTC to get the local of the search quary because regular
         //getHour & getMinutes methods will return local time of the user
         let UTChour = this.localTime.getUTCHours();
         let UTCMins = this.localTime.getUTCMinutes();
-        if (UTCMins < 10){
+        if (UTCMins < 10) {
             UTCMins = `0${UTCMins}`;
         }
         return `${UTChour}:${UTCMins}`;
     };
-    getLocalDay(){
+    getLocalDay() {
         let day = DAYS[this.localTime.getUTCDay()];
         return day;
     };
-    getLocalDayNum(){
+    getLocalDayNum() {
         let day = this.localTime.getUTCDay();
         return day;
     }
-    getLocalDate(){
+    getLocalDate() {
         let month = MONTHS[this.localTime.getUTCMonth()];
         let day = this.localTime.getUTCDate();
         return `${month} ${day}`;
     };
 }
 class Forecast {
-    constructor(result){
+    constructor(result) {
         this.result = result;
     }
-    getIcon(index){
+    getIcon(index) {
         return this.result.data.daily[index].weather[0].icon;
     };
-    getHigh(index){
+    getHigh(index) {
         return this.result.data.daily[index].temp.day;
     }
-    getLow(index){
+    getLow(index) {
         return this.result.data.daily[index].temp.eve;
     }
 };
 
 
-function convertFromK(kelvin = 0){
-    if(isFDegrees){return Math.floor((kelvin - 273.15) * (9/5) + 32); }
-    else {return Math.floor(kelvin - 273.15);} 
+function convertFromK(kelvin = 0) {
+    if (isFDegrees) { return Math.floor((kelvin - 273.15) * (9 / 5) + 32); }
+    else { return Math.floor(kelvin - 273.15); }
 };
-function convertFromTemp(previousTemp){
-    if (isFDegrees){ return Math.floor((previousTemp * (9/5)) + 32)}
-    else { return Math.floor((previousTemp - 32) * (5/9))}
+function convertFromTemp(previousTemp) {
+    if (isFDegrees) { return Math.floor((previousTemp * (9 / 5)) + 32) }
+    else { return Math.floor((previousTemp - 32) * (5 / 9)) }
 }
