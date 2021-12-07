@@ -200,10 +200,10 @@ class Forecast {
         return this.result.data.daily[index].weather[0].icon;
     };
     getHigh(index) {
-        return this.result.data.daily[index].temp.day;
+        return this.result.data.daily[index].temp.max;
     }
     getLow(index) {
-        return this.result.data.daily[index].temp.eve;
+        return this.result.data.daily[index].temp.min;
     }
 };
 

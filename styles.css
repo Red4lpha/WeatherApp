@@ -314,12 +314,14 @@ input:checked + .slider:before {
   font-weight: bolder;
   color: black;
 }
-.forecast-card .degree-high {
+.forecast-temp-parent {
+  text-align: center;
   font-size: 15px;
+}
+.forecast-card .degree-high {
   color: tomato;
 }
 .forecast-card .degree-low {
-  font-size: 15px;
   color: slateblue;
 }
 .forecast-card img {
