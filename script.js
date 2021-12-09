@@ -1,6 +1,6 @@
 const apikey = '7a36fc07f959804b2a9a8d55494ac3dc';
 let searchQuery = 'Tijuana'
-const api = `http://api.openweathermap.org/data/2.5/weather?q=`;
+const api = `https://api.openweathermap.org/data/2.5/weather?q=`;
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const BGIMAGES = [
@@ -136,7 +136,7 @@ async function getResults(query) {
     temperature.innerText = temp;
     weatherType.innerText = data.weather[0].description;
     let icon = data.weather[0].icon;
-    weatherImg.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+    weatherImg.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
     //This uses the icon data from the API to look up what BG image to use
     let obj = BGIMAGES.find(o => o.icon.find(o2 => o2 == icon));
     //If the icon data doesnt match any from my array list then just use default day cloudy bg
