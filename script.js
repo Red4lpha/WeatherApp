@@ -156,7 +156,7 @@ async function getResults(query) {
         let dayNum = (localTime.getLocalDayNum() + index) % DAYS.length;
         card.children[0].innerText = DAYS[dayNum].substr(0, 3);
         let FCIcon = forecastData.getIcon(index);
-        card.children[1].src = `http://openweathermap.org/img/wn/${FCIcon}@2x.png`
+        card.children[1].src = `https://openweathermap.org/img/wn/${FCIcon}@2x.png`
         card.children[2].children[0].innerHTML = convertFromK(forecastData.getHigh(index)) + '&deg';
         card.children[2].children[1].innerHTML = convertFromK(forecastData.getLow(index)) + '&deg';
     });
