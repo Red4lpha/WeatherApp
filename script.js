@@ -98,6 +98,14 @@ degreeSwitcher.addEventListener('change', () => {
     });
 });
 
+//Listener for pressing the 'enter' key while on the query input
+input.addEventListener('keyup', (e) => {
+    if (e.keyCode === 13) {
+        e.preventDefault();
+        btn.click();
+    }
+});
+
 btn.addEventListener('click', () => {
     searchQuery = input.value;
     let query = `${api}${searchQuery}&APPID=${apikey}`;
