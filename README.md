@@ -11,5 +11,8 @@ API project done for [The Odin Project](https://www.theodinproject.com/paths/ful
 
 ## Practice
 
+- API manipulation
 - Axios JS - Get and Catch
 - Async Await
+- DateTime() manipulation
+- Working with UTC time and offsets
