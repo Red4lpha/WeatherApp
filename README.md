@@ -3,7 +3,7 @@
 API project done for [The Odin Project](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/weather-app) curriculum.
 [Live Site](https://red4lpha.github.io/WeatherApp/)
 
-My goal for this was to make a clean and minimalist design to fit neatly withot too much scrolling. 
+My goal for this was to make a clean and minimalist design to fit neatly without too much scrolling. 
 
 Functionality information:
 1. User enters search query
